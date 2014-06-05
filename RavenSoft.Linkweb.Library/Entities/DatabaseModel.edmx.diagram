@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dfb20f46b03443d78b063287962eae26" Name="Diagram1">
+        <EntityTypeShape EntityType="LinkwebModel.CustomerAccountAddress" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="LinkwebModel.CustomerAccount" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="LinkwebModel.Log" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="LinkwebModel.MembershipPolicy" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="LinkwebModel.OrganizationPolicy" Width="1.5" PointX="2.75" PointY="9.375" />
+        <EntityTypeShape EntityType="LinkwebModel.PolicySubscription" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="LinkwebModel.ServiceType" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="LinkwebModel.SystemAccount" Width="1.5" PointX="4.75" PointY="9.375" />
+        <EntityTypeShape EntityType="LinkwebModel.TransactionPayment" Width="1.5" PointX="10.5" PointY="5.25" />
+        <EntityTypeShape EntityType="LinkwebModel.Transaction" Width="1.5" PointX="8.25" PointY="4.5" />
+        <AssociationConnector Association="LinkwebModel.FK_CustomerAccountAddresses_CustomerAccounts" />
+        <AssociationConnector Association="LinkwebModel.FK_PolicySubscriptions_CustomerAccountAddresses" />
+        <AssociationConnector Association="LinkwebModel.FK_Transactions_CustomerAccountsAddresss" />
+        <AssociationConnector Association="LinkwebModel.FK_Transactions_CustomerAccounts" />
+        <AssociationConnector Association="LinkwebModel.FK_PolicySubscriptions_Policies" />
+        <AssociationConnector Association="LinkwebModel.FK_Transactions_ServiceTypes" />
+        <AssociationConnector Association="LinkwebModel.FK_TransactionPayments_Transactions" />
+        <EntityTypeShape EntityType="LinkwebModel.ServiceTypeCharge" Width="1.5" PointX="8.75" PointY="1.5" />
+        <AssociationConnector Association="LinkwebModel.FK_ServiceTypeCharge_ServiceTypes" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

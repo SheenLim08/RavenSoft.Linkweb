@@ -1,0 +1,739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LinkwebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CustomerAccountAddresses">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddress" Type="nvarchar" MaxLength="800" Nullable="false" />
+          <Property Name="BillingAddressAccountID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CustomerAccountID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddressContact" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAddressNotes" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerAccounts">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LogType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LogDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MembershipPolicies">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="800" Nullable="false" />
+          <Property Name="MonthlyFee" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MembershipFee" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="WayBillCharge" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MaxPickupWayBillPerMonth" Type="int" Nullable="false" />
+          <Property Name="MaxDeliveryWayBillPerMonth" Type="int" Nullable="false" />
+          <Property Name="MaxBillEntries" Type="int" Nullable="false" />
+          <Property Name="Insurance" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MembershipMaturityInMonths" Type="int" Nullable="false" />
+          <Property Name="PenaltyCharge" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrganizationPolicies">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="VATPercentage" Type="float" Nullable="false" />
+          <Property Name="LimitAllowedSystemLogin" Type="bit" Nullable="false" />
+          <Property Name="BeginAllowedTimeLogin" Type="datetime" Nullable="false" />
+          <Property Name="EndingAllowedTimeLogin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PolicySubscriptions">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PolicyGUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CustomerAccountAddressGUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SubscriptionDate" Type="datetime" Nullable="false" />
+          <Property Name="NextRenewalDate" Type="datetime" Nullable="false" />
+          <Property Name="NextMonthlyFeePaymentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceTypeCharges">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IndexLocation" Type="int" Nullable="false" />
+          <Property Name="ServiceTypeGUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Charge" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceTypes">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AllowDelivery" Type="bit" Nullable="false" />
+          <Property Name="AllowPickup" Type="bit" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemAccounts">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LogonName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="HashedPassword" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionPayments">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TransactionID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="DatePaid" Type="datetime" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CustomerGUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CustomerAccountAddressGUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BillingAccountID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PolicyWayBillCharge" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ServiceTypeGUID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ServiceTypeCharge" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="VATCharge" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="BatchTransactionID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CustomerAccountAddresses_CustomerAccounts">
+          <End Role="CustomerAccounts" Type="Self.CustomerAccounts" Multiplicity="1" />
+          <End Role="CustomerAccountAddresses" Type="Self.CustomerAccountAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccounts">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="CustomerAccountAddresses">
+              <PropertyRef Name="CustomerAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicySubscriptions_CustomerAccountAddresses">
+          <End Role="CustomerAccountAddresses" Type="Self.CustomerAccountAddresses" Multiplicity="1" />
+          <End Role="PolicySubscriptions" Type="Self.PolicySubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccountAddresses">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="PolicySubscriptions">
+              <PropertyRef Name="CustomerAccountAddressGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicySubscriptions_Policies">
+          <End Role="MembershipPolicies" Type="Self.MembershipPolicies" Multiplicity="1" />
+          <End Role="PolicySubscriptions" Type="Self.PolicySubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MembershipPolicies">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="PolicySubscriptions">
+              <PropertyRef Name="PolicyGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceTypeCharge_ServiceTypes">
+          <End Role="ServiceTypes" Type="Self.ServiceTypes" Multiplicity="1" />
+          <End Role="ServiceTypeCharges" Type="Self.ServiceTypeCharges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTypes">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="ServiceTypeCharges">
+              <PropertyRef Name="ServiceTypeGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionPayments_Transactions">
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="1" />
+          <End Role="TransactionPayments" Type="Self.TransactionPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="TransactionID" />
+            </Principal>
+            <Dependent Role="TransactionPayments">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_CustomerAccounts">
+          <End Role="CustomerAccounts" Type="Self.CustomerAccounts" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccounts">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="CustomerGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_CustomerAccountsAddresss">
+          <End Role="CustomerAccountAddresses" Type="Self.CustomerAccountAddresses" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccountAddresses">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="CustomerAccountAddressGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_ServiceTypes">
+          <End Role="ServiceTypes" Type="Self.ServiceTypes" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTypes">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="ServiceTypeGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LinkwebModelStoreContainer">
+          <EntitySet Name="CustomerAccountAddresses" EntityType="Self.CustomerAccountAddresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerAccounts" EntityType="Self.CustomerAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MembershipPolicies" EntityType="Self.MembershipPolicies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationPolicies" EntityType="Self.OrganizationPolicies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicySubscriptions" EntityType="Self.PolicySubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceTypeCharges" EntityType="Self.ServiceTypeCharges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceTypes" EntityType="Self.ServiceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemAccounts" EntityType="Self.SystemAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionPayments" EntityType="Self.TransactionPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CustomerAccountAddresses_CustomerAccounts" Association="Self.FK_CustomerAccountAddresses_CustomerAccounts">
+            <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
+            <End Role="CustomerAccountAddresses" EntitySet="CustomerAccountAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicySubscriptions_CustomerAccountAddresses" Association="Self.FK_PolicySubscriptions_CustomerAccountAddresses">
+            <End Role="CustomerAccountAddresses" EntitySet="CustomerAccountAddresses" />
+            <End Role="PolicySubscriptions" EntitySet="PolicySubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicySubscriptions_Policies" Association="Self.FK_PolicySubscriptions_Policies">
+            <End Role="MembershipPolicies" EntitySet="MembershipPolicies" />
+            <End Role="PolicySubscriptions" EntitySet="PolicySubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceTypeCharge_ServiceTypes" Association="Self.FK_ServiceTypeCharge_ServiceTypes">
+            <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+            <End Role="ServiceTypeCharges" EntitySet="ServiceTypeCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionPayments_Transactions" Association="Self.FK_TransactionPayments_Transactions">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="TransactionPayments" EntitySet="TransactionPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_CustomerAccounts" Association="Self.FK_Transactions_CustomerAccounts">
+            <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_CustomerAccountsAddresss" Association="Self.FK_Transactions_CustomerAccountsAddresss">
+            <End Role="CustomerAccountAddresses" EntitySet="CustomerAccountAddresses" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ServiceTypes" Association="Self.FK_Transactions_ServiceTypes">
+            <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LinkwebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LinkwebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomerAccountAddresses" EntityType="LinkwebModel.CustomerAccountAddress" />
+          <EntitySet Name="CustomerAccounts" EntityType="LinkwebModel.CustomerAccount" />
+          <EntitySet Name="Logs" EntityType="LinkwebModel.Log" />
+          <EntitySet Name="MembershipPolicies" EntityType="LinkwebModel.MembershipPolicy" />
+          <EntitySet Name="OrganizationPolicies" EntityType="LinkwebModel.OrganizationPolicy" />
+          <EntitySet Name="PolicySubscriptions" EntityType="LinkwebModel.PolicySubscription" />
+          <EntitySet Name="ServiceTypes" EntityType="LinkwebModel.ServiceType" />
+          <EntitySet Name="SystemAccounts" EntityType="LinkwebModel.SystemAccount" />
+          <EntitySet Name="TransactionPayments" EntityType="LinkwebModel.TransactionPayment" />
+          <EntitySet Name="Transactions" EntityType="LinkwebModel.Transaction" />
+          <AssociationSet Name="FK_CustomerAccountAddresses_CustomerAccounts" Association="LinkwebModel.FK_CustomerAccountAddresses_CustomerAccounts">
+            <End Role="CustomerAccount" EntitySet="CustomerAccounts" />
+            <End Role="CustomerAccountAddress" EntitySet="CustomerAccountAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicySubscriptions_CustomerAccountAddresses" Association="LinkwebModel.FK_PolicySubscriptions_CustomerAccountAddresses">
+            <End Role="CustomerAccountAddress" EntitySet="CustomerAccountAddresses" />
+            <End Role="PolicySubscription" EntitySet="PolicySubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_CustomerAccountsAddresss" Association="LinkwebModel.FK_Transactions_CustomerAccountsAddresss">
+            <End Role="CustomerAccountAddress" EntitySet="CustomerAccountAddresses" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_CustomerAccounts" Association="LinkwebModel.FK_Transactions_CustomerAccounts">
+            <End Role="CustomerAccount" EntitySet="CustomerAccounts" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicySubscriptions_Policies" Association="LinkwebModel.FK_PolicySubscriptions_Policies">
+            <End Role="MembershipPolicy" EntitySet="MembershipPolicies" />
+            <End Role="PolicySubscription" EntitySet="PolicySubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ServiceTypes" Association="LinkwebModel.FK_Transactions_ServiceTypes">
+            <End Role="ServiceType" EntitySet="ServiceTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionPayments_Transactions" Association="LinkwebModel.FK_TransactionPayments_Transactions">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="TransactionPayment" EntitySet="TransactionPayments" />
+          </AssociationSet>
+          <EntitySet Name="ServiceTypeCharges" EntityType="LinkwebModel.ServiceTypeCharge" />
+          <AssociationSet Name="FK_ServiceTypeCharge_ServiceTypes" Association="LinkwebModel.FK_ServiceTypeCharge_ServiceTypes">
+            <End Role="ServiceType" EntitySet="ServiceTypes" />
+            <End Role="ServiceTypeCharge" EntitySet="ServiceTypeCharges" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CustomerAccountAddress">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddressAccountID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAccountID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddressContact" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddressNotes" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerAccount" Relationship="LinkwebModel.FK_CustomerAccountAddresses_CustomerAccounts" FromRole="CustomerAccountAddress" ToRole="CustomerAccount" />
+          <NavigationProperty Name="PolicySubscriptions" Relationship="LinkwebModel.FK_PolicySubscriptions_CustomerAccountAddresses" FromRole="CustomerAccountAddress" ToRole="PolicySubscription" />
+          <NavigationProperty Name="Transactions" Relationship="LinkwebModel.FK_Transactions_CustomerAccountsAddresss" FromRole="CustomerAccountAddress" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="CustomerAccount">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerAccountAddresses" Relationship="LinkwebModel.FK_CustomerAccountAddresses_CustomerAccounts" FromRole="CustomerAccount" ToRole="CustomerAccountAddress" />
+          <NavigationProperty Name="Transactions" Relationship="LinkwebModel.FK_Transactions_CustomerAccounts" FromRole="CustomerAccount" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MembershipPolicy">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="MonthlyFee" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="MembershipFee" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="WayBillCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="MaxPickupWayBillPerMonth" Type="Int32" Nullable="false" />
+          <Property Name="MaxDeliveryWayBillPerMonth" Type="Int32" Nullable="false" />
+          <Property Name="MaxBillEntries" Type="Int32" Nullable="false" />
+          <Property Name="Insurance" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="MembershipMaturityInMonths" Type="Int32" Nullable="false" />
+          <Property Name="PenaltyCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="PolicySubscriptions" Relationship="LinkwebModel.FK_PolicySubscriptions_Policies" FromRole="MembershipPolicy" ToRole="PolicySubscription" />
+        </EntityType>
+        <EntityType Name="OrganizationPolicy">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VATPercentage" Type="Double" Nullable="false" />
+          <Property Name="LimitAllowedSystemLogin" Type="Boolean" Nullable="false" />
+          <Property Name="BeginAllowedTimeLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndingAllowedTimeLogin" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PolicySubscription">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAccountAddressGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NextRenewalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NextMonthlyFeePaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CustomerAccountAddress" Relationship="LinkwebModel.FK_PolicySubscriptions_CustomerAccountAddresses" FromRole="PolicySubscription" ToRole="CustomerAccountAddress" />
+          <NavigationProperty Name="MembershipPolicy" Relationship="LinkwebModel.FK_PolicySubscriptions_Policies" FromRole="PolicySubscription" ToRole="MembershipPolicy" />
+        </EntityType>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AllowDelivery" Type="Boolean" Nullable="false" />
+          <Property Name="AllowPickup" Type="Boolean" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Transactions" Relationship="LinkwebModel.FK_Transactions_ServiceTypes" FromRole="ServiceType" ToRole="Transaction" />
+          <NavigationProperty Name="ServiceTypeCharges" Relationship="LinkwebModel.FK_ServiceTypeCharge_ServiceTypes" FromRole="ServiceType" ToRole="ServiceTypeCharge" />
+        </EntityType>
+        <EntityType Name="SystemAccount">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LogonName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HashedPassword" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TransactionPayment">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatePaid" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Notes" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transaction" Relationship="LinkwebModel.FK_TransactionPayments_Transactions" FromRole="TransactionPayment" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAccountAddressGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAccountID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyWayBillCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ServiceTypeGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceTypeCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VATCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BatchTransactionID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerAccountAddress" Relationship="LinkwebModel.FK_Transactions_CustomerAccountsAddresss" FromRole="Transaction" ToRole="CustomerAccountAddress" />
+          <NavigationProperty Name="CustomerAccount" Relationship="LinkwebModel.FK_Transactions_CustomerAccounts" FromRole="Transaction" ToRole="CustomerAccount" />
+          <NavigationProperty Name="ServiceType" Relationship="LinkwebModel.FK_Transactions_ServiceTypes" FromRole="Transaction" ToRole="ServiceType" />
+          <NavigationProperty Name="TransactionPayments" Relationship="LinkwebModel.FK_TransactionPayments_Transactions" FromRole="Transaction" ToRole="TransactionPayment" />
+        </EntityType>
+        <Association Name="FK_CustomerAccountAddresses_CustomerAccounts">
+          <End Type="LinkwebModel.CustomerAccount" Role="CustomerAccount" Multiplicity="1" />
+          <End Type="LinkwebModel.CustomerAccountAddress" Role="CustomerAccountAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccount">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="CustomerAccountAddress">
+              <PropertyRef Name="CustomerAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicySubscriptions_CustomerAccountAddresses">
+          <End Type="LinkwebModel.CustomerAccountAddress" Role="CustomerAccountAddress" Multiplicity="1" />
+          <End Type="LinkwebModel.PolicySubscription" Role="PolicySubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccountAddress">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="PolicySubscription">
+              <PropertyRef Name="CustomerAccountAddressGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_CustomerAccountsAddresss">
+          <End Type="LinkwebModel.CustomerAccountAddress" Role="CustomerAccountAddress" Multiplicity="1" />
+          <End Type="LinkwebModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccountAddress">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="CustomerAccountAddressGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_CustomerAccounts">
+          <End Type="LinkwebModel.CustomerAccount" Role="CustomerAccount" Multiplicity="1" />
+          <End Type="LinkwebModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAccount">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="CustomerGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicySubscriptions_Policies">
+          <End Type="LinkwebModel.MembershipPolicy" Role="MembershipPolicy" Multiplicity="1" />
+          <End Type="LinkwebModel.PolicySubscription" Role="PolicySubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MembershipPolicy">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="PolicySubscription">
+              <PropertyRef Name="PolicyGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_ServiceTypes">
+          <End Type="LinkwebModel.ServiceType" Role="ServiceType" Multiplicity="1" />
+          <End Type="LinkwebModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceType">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ServiceTypeGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionPayments_Transactions">
+          <End Type="LinkwebModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="LinkwebModel.TransactionPayment" Role="TransactionPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransactionID" />
+            </Principal>
+            <Dependent Role="TransactionPayment">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceTypeCharge">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IndexLocation" Type="Int32" Nullable="false" />
+          <Property Name="ServiceTypeGUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Charge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="ServiceType" Relationship="LinkwebModel.FK_ServiceTypeCharge_ServiceTypes" FromRole="ServiceTypeCharge" ToRole="ServiceType" />
+        </EntityType>
+        <Association Name="FK_ServiceTypeCharge_ServiceTypes">
+          <End Type="LinkwebModel.ServiceType" Role="ServiceType" Multiplicity="1" />
+          <End Type="LinkwebModel.ServiceTypeCharge" Role="ServiceTypeCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceType">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="ServiceTypeCharge">
+              <PropertyRef Name="ServiceTypeGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LinkwebModelStoreContainer" CdmEntityContainer="LinkwebEntities">
+    <EntitySetMapping Name="CustomerAccountAddresses">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.CustomerAccountAddress)">
+        <MappingFragment StoreEntitySet="CustomerAccountAddresses">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="BillingAddressAccountID" ColumnName="BillingAddressAccountID" />
+          <ScalarProperty Name="CustomerAccountID" ColumnName="CustomerAccountID" />
+          <ScalarProperty Name="BillingAddressContact" ColumnName="BillingAddressContact" />
+          <ScalarProperty Name="BillingAddressNotes" ColumnName="BillingAddressNotes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerAccounts">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.CustomerAccount)">
+        <MappingFragment StoreEntitySet="CustomerAccounts">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.Log)">
+        <MappingFragment StoreEntitySet="Logs">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="LogType" ColumnName="LogType" />
+          <ScalarProperty Name="LogDescription" ColumnName="LogDescription" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipPolicies">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.MembershipPolicy)">
+        <MappingFragment StoreEntitySet="MembershipPolicies">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MonthlyFee" ColumnName="MonthlyFee" />
+          <ScalarProperty Name="MembershipFee" ColumnName="MembershipFee" />
+          <ScalarProperty Name="WayBillCharge" ColumnName="WayBillCharge" />
+          <ScalarProperty Name="MaxPickupWayBillPerMonth" ColumnName="MaxPickupWayBillPerMonth" />
+          <ScalarProperty Name="MaxDeliveryWayBillPerMonth" ColumnName="MaxDeliveryWayBillPerMonth" />
+          <ScalarProperty Name="MaxBillEntries" ColumnName="MaxBillEntries" />
+          <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+          <ScalarProperty Name="MembershipMaturityInMonths" ColumnName="MembershipMaturityInMonths" />
+          <ScalarProperty Name="PenaltyCharge" ColumnName="PenaltyCharge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationPolicies">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.OrganizationPolicy)">
+        <MappingFragment StoreEntitySet="OrganizationPolicies">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="VATPercentage" ColumnName="VATPercentage" />
+          <ScalarProperty Name="LimitAllowedSystemLogin" ColumnName="LimitAllowedSystemLogin" />
+          <ScalarProperty Name="BeginAllowedTimeLogin" ColumnName="BeginAllowedTimeLogin" />
+          <ScalarProperty Name="EndingAllowedTimeLogin" ColumnName="EndingAllowedTimeLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolicySubscriptions">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.PolicySubscription)">
+        <MappingFragment StoreEntitySet="PolicySubscriptions">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="PolicyGUID" ColumnName="PolicyGUID" />
+          <ScalarProperty Name="CustomerAccountAddressGUID" ColumnName="CustomerAccountAddressGUID" />
+          <ScalarProperty Name="SubscriptionDate" ColumnName="SubscriptionDate" />
+          <ScalarProperty Name="NextRenewalDate" ColumnName="NextRenewalDate" />
+          <ScalarProperty Name="NextMonthlyFeePaymentDate" ColumnName="NextMonthlyFeePaymentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.ServiceType)">
+        <MappingFragment StoreEntitySet="ServiceTypes">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AllowDelivery" ColumnName="AllowDelivery" />
+          <ScalarProperty Name="AllowPickup" ColumnName="AllowPickup" />
+          <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemAccounts">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.SystemAccount)">
+        <MappingFragment StoreEntitySet="SystemAccounts">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LogonName" ColumnName="LogonName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionPayments">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.TransactionPayment)">
+        <MappingFragment StoreEntitySet="TransactionPayments">
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IsTypeOf(LinkwebModel.Transaction)">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="CustomerGUID" ColumnName="CustomerGUID" />
+          <ScalarProperty Name="CustomerAccountAddressGUID" ColumnName="CustomerAccountAddressGUID" />
+          <ScalarProperty Name="BillingAccountID" ColumnName="BillingAccountID" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+          <ScalarProperty Name="PolicyWayBillCharge" ColumnName="PolicyWayBillCharge" />
+          <ScalarProperty Name="ServiceTypeGUID" ColumnName="ServiceTypeGUID" />
+          <ScalarProperty Name="ServiceTypeCharge" ColumnName="ServiceTypeCharge" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="VATCharge" ColumnName="VATCharge" />
+          <ScalarProperty Name="BatchTransactionID" ColumnName="BatchTransactionID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTypeCharges">
+            <EntityTypeMapping TypeName="LinkwebModel.ServiceTypeCharge">
+              <MappingFragment StoreEntitySet="ServiceTypeCharges">
+                <ScalarProperty Name="Charge" ColumnName="Charge" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ServiceTypeGUID" ColumnName="ServiceTypeGUID" />
+                <ScalarProperty Name="IndexLocation" ColumnName="IndexLocation" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

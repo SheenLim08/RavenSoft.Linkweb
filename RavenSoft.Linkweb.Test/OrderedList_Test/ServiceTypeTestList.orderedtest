@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="ServiceTypeTestList" storage="d:\shared documents\documents\visual studio 2013\projects\ravensoft.linkweb\ravensoft.linkweb.test\orderedlist_test\servicetypetestlist.orderedtest" id="58859df2-4d2b-47c8-bdde-6f90f5706f4f" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="ab83aaa6-f809-9cac-3159-fff3ba342e9d" name="ServiceType_Test" storage="..\bin\debug\ravensoft.linkweb.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="bfbf17cc-fa0e-5070-3cd5-7ae51b01a9f0" name="ServiceTypeUpdate_Test" storage="..\bin\debug\ravensoft.linkweb.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="eb156541-a7b2-55a7-03e6-942b19738606" name="ServiceType_GetServiceTypeCharge_Test" storage="..\bin\debug\ravensoft.linkweb.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="3f0818c2-6051-648b-203d-924e4c3a4492" name="ServiceType_RemoveServiceTypeCharge_Test" storage="..\bin\debug\ravensoft.linkweb.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="OrderedTest1" storage="d:\shared documents\documents\visual studio 2013\projects\ravensoft.linkweb\ravensoft.linkweb.test\orderedtest1.orderedtest" id="c1840834-1231-42bc-96ce-dec71f0e2b87" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="ab8dbee5-38b4-9765-1cfc-1ae69fdebbd5" name="SystemAccount_Test" storage="bin\debug\ravensoft.linkweb.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="9197e683-6f1b-38a6-cb5e-d9d3e5c549af" name="SystemAccountUpdate_Test" storage="bin\debug\ravensoft.linkweb.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>
